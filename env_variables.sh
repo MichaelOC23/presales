@@ -11,8 +11,12 @@ source "${HOME}/.config/secrets.sh"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export SCRIPTS_PATH="${HOME}/code/scripts"
 export CONFIG_PATH="${HOME}/.config"
+export SCRIPTS_PATH=${CONFIG_PATH}
+SCRIPTS_PATH="${HOME}/.config"
+SETUP_SCRIPT_URL="https://raw.githubusercontent.com/MichaelOC23/presales/main/pre-sales-machine-setup.sh"
+ENV_SCRIPT="https://raw.githubusercontent.com/MichaelOC23/presales/main/env_variables.sh"
+REQ_SCRIPT="https://raw.githubusercontent.com/MichaelOC23/presales/main/requirements.scripts.txt"
 
 # PATH export (Standard mac path)
 export PATH="/System/Cryptexes/App/usr/bin:/usr/bin:/bin" # Standard Path
@@ -31,8 +35,8 @@ alias cd_scripts="cd ${SCRIPTS_PATH}"
 alias python='python3'
 alias pip='pip3'
 
-ENV_URL="https://firebasestorage.googleapis.com/v0/b/toolsexplorationfirebase.appspot.com/o/presales%2Fpre-sales-machine-setup.sh?alt=media&token=9459140e-8d74-4127-9faa-d286dede1c1c"
-PRESALES_SH="curl -fsSL \"${ENV_URL}\""
+
+PRESALES_SH="curl -fsSL \"${ENV_SCRIPT}\""
 alias presales="/bin/bash -c \"\$( ${PRESALES_SH} )\""
 
 

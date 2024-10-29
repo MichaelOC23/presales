@@ -5,6 +5,9 @@ echo "This script is designed to be run on a new Mac to set up the environment f
 echo "Each step is laid out below:"
 
 SCRIPTS_PATH="${HOME}/.config"
+SETUP_SCRIPT_URL="https://github.com/MichaelOC23/presales/blob/main/pre-sales-machine-setup.sh"
+ENV_SCRIPT="https://github.com/MichaelOC23/presales/blob/main/env_variables.sh"
+REQ_SCRIPT="https://github.com/MichaelOC23/presales/blob/main/requirements.scripts.txt"
 # Function to deinitialize a Git repository
 
 show_menu() {
@@ -29,6 +32,7 @@ read_choice() {
     case $choice in
     1)
         option1
+        update_env_variables
         ;;
     2)
         option2
@@ -39,12 +43,16 @@ read_choice() {
 
     4) 
         dev_env_setup
+        update_env_variables
         ;;
     5)
      source env_variables_ollama.sh
+     update_env_variables
         exit 0
         ;;
-
+    6)
+    update_env_variables
+    ;;
     
 
     7)
@@ -191,7 +199,7 @@ option1() {
 
     eval "$(/opt/homebrew/bin/brew shellenv)"
     source "${SCRIPTS_PATH}/env_variables.sh"
-    curl -o "$HOME/.config/env_variables.sh" "https://firebasestorage.googleapis.com/v0/b/toolsexplorationfirebase.appspot.com/o/presales%2Fenv_variables.sh?alt=media&token=cef4abb7-708a-4680-b4c2-67f575d13415"
+    curl -o "$HOME/.config/env_variables.sh" "${ENV_SCRIPT}"
     grep -qxF "source ${SCRIPT_FOLDER}/env_variables.sh" ~/.zprofile || echo "source ${SCRIPT_FOLDER}/env_variables.sh" >> ~/.zprofile
     
     # Install Rosetta
@@ -358,12 +366,17 @@ install_or_upgrade_cask() {
     fi
 }
 
-dev_env_setup() {
-
+update_env_variables() {
     mkdir -p "${HOME}/.conifg"
     cd "${HOME}/.conifg"
     grep -qxF "source ${SCRIPT_FOLDER}/env_variables.sh" ~/.zprofile || echo "source ${SCRIPT_FOLDER}/env_variables.sh" >> ~/.zprofile
-    curl -o "$HOME/.config/env_variables.sh" "https://firebasestorage.googleapis.com/v0/b/toolsexplorationfirebase.appspot.com/o/presales%2Fenv_variables.sh?alt=media&token=cef4abb7-708a-4680-b4c2-67f575d13415"
+    curl -o "$HOME/.config/env_variables.sh" curl -o "$HOME/.config/env_variables.sh" "${ENV_SCRIPT}"
+}
+
+dev_env_setup() {
+
+    update_env_variables
+    
 
     DNAME="scripts"
 
@@ -433,7 +446,7 @@ dev_env_setup() {
     echo -e "\033[1;32mActivated virtual environment successfully\033[0m"
 
     # Get the path of the requirements file
-    REQUIREMENTS_FILE="https://firebasestorage.googleapis.com/v0/b/toolsexplorationfirebase.appspot.com/o/presales%2Frequirements.scripts.txt?alt=media&token=ea50a0a2-7a49-41fd-a3c1-07ed47ad0632"
+    REQUIREMENTS_FILE="${REQ_FILE}"
     echo "Requirements file: $REQUIREMENTS_FILE"
 
     # Upgrade pip
