@@ -446,8 +446,7 @@ dev_env_setup() {
     echo -e "\033[1;32mActivated virtual environment successfully\033[0m"
 
     # Get the path of the requirements file
-    REQUIREMENTS_FILE="${REQ_FILE}"
-    echo "Requirements file: $REQUIREMENTS_FILE"
+    echo "Requirements file: $REQ_SCRIPT"
 
     # Upgrade pip
     pip install --upgrade pip || {
@@ -458,7 +457,7 @@ dev_env_setup() {
 
     # Install requirements
     echo -e "\n\n\033[4;32mProceeding with the installation of all libraries ...\033[0m"
-    pip install -r ${REQUIREMENTS_FILE} || {
+    pip install -r ${REQ_SCRIPT} || {
         echo -e "\033[1;31mRequirements installation failed\033[0m"
         exit 1
     }
