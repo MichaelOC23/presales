@@ -5,9 +5,9 @@ echo "This script is designed to be run on a new Mac to set up the environment f
 echo "Each step is laid out below:"
 
 SCRIPTS_PATH="${HOME}/.config"
-SETUP_SCRIPT_URL="https://github.com/MichaelOC23/presales/blob/main/pre-sales-machine-setup.sh"
-ENV_SCRIPT="https://github.com/MichaelOC23/presales/blob/main/env_variables.sh"
-REQ_SCRIPT="https://github.com/MichaelOC23/presales/blob/main/requirements.scripts.txt"
+SETUP_SCRIPT_URL="https://raw.githubusercontent.com/MichaelOC23/presales/main/pre-sales-machine-setup.sh"
+ENV_SCRIPT="https://raw.githubusercontent.com/MichaelOC23/presales/main/env_variables.sh"
+REQ_SCRIPT="https://raw.githubusercontent.com/MichaelOC23/presales/main/requirements.scripts.txt"
 # Function to deinitialize a Git repository
 
 show_menu() {
