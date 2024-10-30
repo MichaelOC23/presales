@@ -9,7 +9,20 @@ SETUP_SCRIPT_URL="https://raw.githubusercontent.com/MichaelOC23/presales/main/pr
 ENV_SCRIPT="https://raw.githubusercontent.com/MichaelOC23/presales/main/env_variables.sh"
 REQ_SCRIPT="https://raw.githubusercontent.com/MichaelOC23/presales/main/requirements.scripts.txt"
 # Function to deinitialize a Git repository
-
+# Color Variables for text
+GREEN='\033[0;32m'
+PURPLE='\033[1;34m'
+PINK='\033[0;35m'
+LIGHTBLUE_BOLD='\033[1;36m'
+CYAN='\033[1;96m'
+MAGENTA='\033[1;95m'
+BOLD='\033[1m'
+UNDERLINE='\033[4m'
+BLINK='\033[5m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+    
 show_menu() {
     echo -e "\nSelect an option from the menu:"
     echo -e "    1) Machine One-Time Setup: Homebrew, Python, Git, and Rosetta"
@@ -296,10 +309,7 @@ option3() {
 
 clear
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+
 
 # Function to check if Homebrew is installed
 check_homebrew_installed() {
@@ -376,17 +386,7 @@ dev_env_setup() {
 
     DNAME="scripts"
 
-    # Color Variables for text
-    GREEN='\033[0;32m'
-    PURPLE='\033[1;34m'
-    PINK='\033[0;35m'
-    LIGHTBLUE_BOLD='\033[1;36m'
-    CYAN='\033[1;96m'
-    MAGENTA='\033[1;95m'
-    BOLD='\033[1m'
-    UNDERLINE='\033[4m'
-    BLINK='\033[5m'
-    NC='\033[0m' # No Color
+
 
     DNAME_LOWER=$(echo "$DNAME" | tr '[:upper:]' '[:lower:]')
     echo "Building Dev Environment for VS Code"
