@@ -26,12 +26,14 @@ NC='\033[0m' # No Color
 show_menu() {
     echo -e "\nSelect an option from the menu:"
     echo -e "    1) Machine One-Time Setup: Homebrew, Python, Git, and Rosetta"
-    echo -e "    2) Install Business Applications"
-    echo -e "    3) Install Development Applications"
+    echo -e "    2) Microsoft Office (Office, OneDrive, Teams, Edge)"
+    echo -e "    3) Adobe Creative Cloud"
+    echo -e "    4) Other Business Applications (Dropbox, Zoom, Chrome, ChatGPT, Arc, Figma)"
+    echo -e "    5) Install Development Applications"
     
-    echo -e "${PURPLE}    4) Recreate the python virtual environment  ${NC}"
-    echo -e "${PURPLE}    5) Update Configuraiton (Env_Variables)  ${NC}"
-    echo -e "${PURPLE}    6) Install/Upgrade Ollama / Open Web UI  ${NC}"
+    echo -e "${PURPLE}    6) Deploy/Recreate the python virtual environment  ${NC}"
+    echo -e "${PURPLE}    7) Update Configuraiton (Env_Variables)  ${NC}"
+    echo -e "${PURPLE}    8) Install/Upgrade Ollama / Open Web UI  ${NC}"
     
     
     echo -e "${MAGENTA}Press enter to exit.${NC}"
@@ -52,18 +54,21 @@ read_choice() {
     3)
         option3
         ;;
-
     4) 
-        dev_env_setup
-        update_env_variables
+        option4
         ;;
-
-    5)
+    5) 
+        option5
+        ;;
+    6)
+    dev_env_setup
     update_env_variables
     ;;
-    
+    7)
+    update_env_variables
+    ;;
 
-    6)
+    8)
     # Fixed Variables
         HOST_OPTION="--add-host=host.docker.internal:host-gateway"
         LLM_DATA="${HOME}/data-llm"
@@ -215,19 +220,25 @@ option1() {
     echo "Installing Rosetta... this could take a while... please be patient."
     softwareupdate --install-rosetta
 }
-
 option2() {
+    install_or_upgrade_cask microsoft-edge
+    install_or_upgrade_cask microsoft-office
+    install_or_upgrade_cask microsoft-teams
+}
+option3() {
+    install_or_upgrade_cask adobe-creative-cloud
+}
+
+option4() {
     echo "You chose Option 5:"
     echo "This will install Business Applications"
 
     # Business Apps
-    install_or_upgrade_cask microsoft-office
-    install_or_upgrade_cask microsoft-teams
     install_or_upgrade_cask dropbox
     install_or_upgrade_cask chatgpt
 
     # Browsers
-    install_or_upgrade_cask microsoft-edge
+    
     install_or_upgrade_cask google-chrome
     install_or_upgrade_cask firefox
     install_or_upgrade_cask arc
@@ -235,7 +246,7 @@ option2() {
 
     # Design
     install_or_upgrade_cask figma
-    install_or_upgrade_cask adobe-creative-cloud
+    
 
     # Communication Apps
     install_or_upgrade_cask zoom
@@ -255,7 +266,7 @@ option2() {
     echo -e "${CYAN}---> Power JSON Editor\n---> Microsoft To Do\n{NC}"
 }
 
-option3() {
+option5() {
     # Xcode Command Line Tools
     xcode-select --install
 
@@ -306,9 +317,6 @@ option3() {
     # brew services start postgresql
     # brew services stop postgresql
 }
-
-clear
-
 
 
 # Function to check if Homebrew is installed
