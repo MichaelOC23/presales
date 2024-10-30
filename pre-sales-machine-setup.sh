@@ -17,9 +17,8 @@ show_menu() {
     echo -e "    3) Install Development Applications"
     
     echo -e "${PURPLE}    4) Recreate the python virtual environment  ${NC}"
-    echo -e "${PURPLE}    5) Set Ollama Env Variables (one-time)  ${NC}"
-    echo -e "${PURPLE}    6) Update Configuraiton (Env_Variables)  ${NC}"
-    echo -e "${PURPLE}    7) Install/Upgrade Ollama / Open Web UI  ${NC}"
+    echo -e "${PURPLE}    5) Update Configuraiton (Env_Variables)  ${NC}"
+    echo -e "${PURPLE}    6) Install/Upgrade Ollama / Open Web UI  ${NC}"
     
     
     echo -e "${MAGENTA}Press enter to exit.${NC}"
@@ -45,17 +44,13 @@ read_choice() {
         dev_env_setup
         update_env_variables
         ;;
+
     5)
-     source env_variables_ollama.sh
-     update_env_variables
-        exit 0
-        ;;
-    6)
     update_env_variables
     ;;
     
 
-    7)
+    6)
     # Fixed Variables
         HOST_OPTION="--add-host=host.docker.internal:host-gateway"
         LLM_DATA="${HOME}/data-llm"
@@ -468,10 +463,10 @@ dev_env_setup() {
     cd "${SCRIPT_DIR}" || exit 1
     # ### Backup current requirements
     mkdir -p .req_backup
-    cp ${REQUIREMENTS_FILE} ".req_backup/requirements_raw_$(date +%Y%m%d_%H%M%S).txt" || {
-        echo -e "\033[1;31mRequirements backup failed\033[0m"
-        exit 1
-    }
+    # cp ${REQUIREMENTS_FILE} ".req_backup/requirements_raw_$(date +%Y%m%d_%H%M%S).txt" || {
+    #     echo -e "\033[1;31mRequirements backup failed\033[0m"
+    #     exit 1
+    # }
     echo -e "\033[1;32mRequirements backup successful\033[0m"
 
     # ### Freeze the current state of packages
