@@ -34,6 +34,7 @@ show_menu() {
     echo -e "${PURPLE}    6) Deploy/Recreate the python virtual environment  ${NC}"
     echo -e "${PURPLE}    7) Update Configuraiton (Env_Variables)  ${NC}"
     echo -e "${PURPLE}    8) Install/Upgrade Ollama / Open Web UI  ${NC}"
+    echo -e "${PURPLE}    9) Install/Upgrade Common Ollama Models ${NC}"
     
     
     echo -e "${MAGENTA}Press enter to exit.${NC}"
@@ -172,6 +173,18 @@ read_choice() {
         echo "Container setup complete."
         exit 0
         
+    ;;
+
+    9)
+    ollama pull llama3.1:latest 
+    ollama pull phi3.5:latest 
+    ollama pull codellama:13b 
+    ollama pull nomic-embed-text:latest
+    ollama pull starcoder2:3b
+    ollama pull gemma2:latest
+    ollama pull nuextract:latest
+    ollama pull mxbai-embed-large:latest
+
     ;;
 
     *)
