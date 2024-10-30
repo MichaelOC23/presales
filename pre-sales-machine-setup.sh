@@ -82,6 +82,7 @@ read_choice() {
 
         # Function to run the Docker container
         run_container_openwebui() {
+            echo -e "Port:${OPENWEBUI_PORT_MAPPING} \nHost:${HOST_OPTION} \nVolume:${OPENWEBUI_VOLUME_MAPPING} \nContainer:${CONTAINER_NAME} \nImage:${IMAGE_NAME}"
             docker run -d 
                 -p $OPENWEBUI_PORT_MAPPING \
                 $HOST_OPTION \
