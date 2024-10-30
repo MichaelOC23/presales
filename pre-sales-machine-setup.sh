@@ -381,9 +381,9 @@ install_or_upgrade_cask() {
 }
 
 update_env_variables() {
-    mkdir -p "${HOME}/.conifg"
-    cd "${HOME}/.conifg"
-    grep -qxF "source ${SCRIPT_FOLDER}/env_variables.sh" ~/.zprofile || echo "source ${SCRIPT_FOLDER}/env_variables.sh" >> ~/.zprofile
+    mkdir -p "${HOME}/.config"
+    cd "${HOME}/.config"
+    grep -qxF "source ${HOME}/.config/env_variables.sh" ~/.zprofile || echo "source ${HOME}/.config/env_variables.sh" >> ~/.zprofile
     curl -o "$HOME/.config/env_variables.sh" curl -o "$HOME/.config/env_variables.sh" "${ENV_SCRIPT}"
 }
 
